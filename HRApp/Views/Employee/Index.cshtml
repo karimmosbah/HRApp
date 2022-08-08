@@ -1,0 +1,47 @@
+﻿@model IEnumerable<Employee>
+<html>
+<head>
+    <style>
+        table.table-hover tbody tr:hover{
+            background-color:blue;
+        }
+    </style>
+</head>
+
+<body>
+<h2>All Employees</h2>       
+<a asp-action="Create" class="btn btn-primary">Create New</a>
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Employee No.</th>
+            <th>Employee Name</th>
+            <th>Date Of Birth</th>
+            <th>Hiring Date</th>
+            <th>Gross Salary</th>
+            <th>Net Salary</th>
+            <th>Department</th>
+            
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+           <tr>
+               <td>@Html.DisplayFor(modelitem => item.EmployeeNumber)</td>
+               <td>@Html.DisplayFor(modelitem => item.EmployeeName)</td>
+               <td>@Html.DisplayFor(modelitem => item.DOB)</td>
+               <td>@Html.DisplayFor(modelitem => item.HiringDate)</td>
+               <td>@Html.DisplayFor(modelitem => item.GrossSalary)</td>
+               <td>@Html.DisplayFor(modelitem => item.NetSalary)</td>
+               <td>@Html.DisplayFor(modelitem => item.DepartmentName)</td>
+               <td>
+               @Html.ActionLink("Edit","Edit", new{ Id = item.EmployeeId})
+               @Html.ActionLink("Delete","Delete", new{ Id = item.EmployeeId}, new { onclick = "return confirm('Are You Sure To Delete This Employee?');"})
+               </td>
+           </tr> 
+        }
+    </tbody>
+</table>
+</body>
+</html>
